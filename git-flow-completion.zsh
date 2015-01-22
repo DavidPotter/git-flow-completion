@@ -87,6 +87,8 @@ __git-flow-release ()
 			subcommands=(
 				'start:Start a new release branch.'
 				'finish:Finish a release branch.'
+				'publish:publish'
+				'track:track'
 				'list:List all your release branches. (Alias to `git flow release`)'
 			)
 			_describe -t commands 'git flow release' subcommands
@@ -111,6 +113,16 @@ __git-flow-release ()
 						-m'[Use the given tag message]'\
 						-p'[Push to $ORIGIN after performing finish]'\
 						':version:__git_flow_version_list'
+				;;
+
+				(publish)
+					_arguments \
+						':feature:__git_flow_release_list'\
+				;;
+
+				(track)
+					_arguments \
+						':feature:__git_flow_release_list'\
 				;;
 
 				*)
@@ -138,6 +150,8 @@ __git-flow-hotfix ()
 			subcommands=(
 				'start:Start a new hotfix branch.'
 				'finish:Finish a hotfix branch.'
+				'publish:publish'
+				'track:track'
 				'list:List all your hotfix branches. (Alias to `git flow hotfix`)'
 			)
 			_describe -t commands 'git flow hotfix' subcommands
@@ -163,6 +177,16 @@ __git-flow-hotfix ()
 						-m'[Use the given tag message]'\
 						-p'[Push to $ORIGIN after performing finish]'\
 						':hotfix:__git_flow_hotfix_list'
+				;;
+
+				(publish)
+					_arguments \
+						':feature:__git_flow_hotfix_list'\
+				;;
+
+				(track)
+					_arguments \
+						':feature:__git_flow_hotfix_list'\
 				;;
 
 				*)
@@ -191,7 +215,7 @@ __git-flow-feature ()
 				'start:Start a new feature branch.'
 				'finish:Finish a feature branch.'
 				'list:List all your feature branches. (Alias to `git flow feature`)'
-				'publish: public'
+				'publish: publish'
 				'track: track'
 				'diff: diff'
 				'rebase: rebase'
